@@ -1,0 +1,23 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="PayrollSystem">
+    <output-path>$PROJECT_DIR$/out/artifacts/PayrollSystem</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="Common.Welcome" />
+        <option name="description" value="" />
+        <option name="height" value="480" />
+        <option name="htmlParamFile" value="" />
+        <option name="paramFile" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="width" value="640" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="PayrollSystem.jar">
+        <element id="module-output" name="PayrollSystem" />
+      </element>
+      <element id="library" level="project" name="mysql-connector-java-5.1.35-bin" />
+    </root>
+  </artifact>
+</component>
