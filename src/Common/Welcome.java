@@ -22,11 +22,13 @@ import java.sql.*;
  * Created by Ankit Sarkar on 4/9/2016.
  */
 public class Welcome extends Application{
-    static Stage common;
-    Scene login;
+    public static Stage common;
+    static Scene login;
     Button sign_in, apply;
     String eid;
     String pass;
+    static TextField usert;
+    static PasswordField passt;
 
     public static void main(String[] args){
         launch(args);
@@ -36,19 +38,19 @@ public class Welcome extends Application{
         common = primaryStage;
         common.setOnCloseRequest(e -> {
             e.consume();
-            onclose();
+            CloseLogic.onclose();
         });
         Label heading = new Label("Payroll Management System");
         Label username = new Label("Username");
         Label password = new Label("Password");
         sign_in = new Button("Sign In");
         apply = new Button("Apply");
-        TextField usert = new TextField();
-        PasswordField passt = new PasswordField();
+        usert = new TextField();
+        passt = new PasswordField();
 
         Button exit = new Button("Exit");
         exit.setOnAction(e -> {
-            onclose();
+            CloseLogic.onclose();
         });
 
         sign_in.setOnAction(e -> {
@@ -58,7 +60,7 @@ public class Welcome extends Application{
             else {
                 int access = validate(usert.getText(), passt.getText());
                 if (access == 1) {
-                    Scene next = Admin.Manager.display(Integer.parseInt(usert.getText()), login);
+                    Admin.Manager.display(Integer.parseInt(usert.getText()), login);
                 } else if (access == 2) {
                     Scene next = Employee.Manager.display(Integer.parseInt(usert.getText()), login);
                 } else {
@@ -119,10 +121,10 @@ public class Welcome extends Application{
             return 0;
         }
     }
-
-    private void onclose(){
-        if(ConfirmDialog.display("Confirmation","Are You Sure ?")){
-            common.close();
-        }
+    public static void back(){
+        usert.setText("");
+        passt.setText("");
+        common.setScene(login);
+        common.show();
     }
 }
