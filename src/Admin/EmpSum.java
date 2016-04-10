@@ -6,14 +6,19 @@ import Common.DBHub;
 import Common.Welcome;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 
 /**
- * Created by Deadpool on 4/10/2016.
+ * Created by Ankit Sarkar on 4/10/2016.
  */
 public class EmpSum {
-    public static void display(int EID){
+    public static void display(int EID, Scene sback){
+        Button back = new Button("Back");
+        Button exit = new Button("Exit");
+        Button logout = new Button("Log Out");
+        Button details = new Button("View Details");
         Label heading = new Label("Employee Summary");
         Label lid = new Label(Integer.toString(EID));
         Label lidF = new Label("Identification Code:");
@@ -38,7 +43,11 @@ public class EmpSum {
         Label lgtotalF = new Label("Gross Salary");
         float gtotal = Float.parseFloat(DBHub.singleselect(EID,"BASIC")) + atotal -dtotal;
         Label lgtotal = new Label("\u20B9 "+Float.toString(gtotal));
-
+        back.setOnAction(e -> {
+            Manager.tsearch.setText("");
+            Welcome.common.setScene(sback);
+        });
+        exit.setOnAction(e -> CloseLogic.onclose());
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         layout.setHgap(10);
@@ -57,6 +66,9 @@ public class EmpSum {
         layout.add(ldtotal,1,6);
         layout.add(lgtotalF,0,7);
         layout.add(lgtotal,1,7);
+        layout.add(back,0,9);
+        layout.add(exit,1,9);
+        layout.add(logout,0,10);
 
         Scene scene = new Scene(layout,640,480);
         Welcome.common.setScene(scene);

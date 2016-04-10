@@ -20,20 +20,13 @@ import java.sql.ResultSet;
  * Created by Ankit Sarkar on 4/9/2016.
  */
 public class Manager {
+    static TextField tsearch = new TextField();
     public static void display(int EID, Scene login){
         Label heading = new Label("Administrator Panel");
         Label lsearch = new Label("Employee ID to Search");
-        TextField tsearch = new TextField();
         Button bsearch = new Button("Search");
         Button logout = new Button("Logout");
-        bsearch.setOnAction(e ->{
-            if(tsearch.getText().length() == 0){
-                AlertDialog.display("Empty Field", "The Field Can't be Empty");
-            }
-            else{
-                msearch(Integer.parseInt(tsearch.getText()));
-            }
-        });
+
 
         Button exit = new Button("Exit");
         exit.setOnAction(e -> {
@@ -56,18 +49,26 @@ public class Manager {
         layout.add(exit,1,3);
 
         Scene scene = new Scene(layout,640,480);
+        bsearch.setOnAction(e ->{
+            if(tsearch.getText().length() == 0){
+                AlertDialog.display("Empty Field", "The Field Can't be Empty");
+            }
+            else{
+                msearch(Integer.parseInt(tsearch.getText()),scene);
+            }
+        });
         Welcome.common.setScene(scene);
         Welcome.common.show();
 
     }
-    private static void msearch(int EID){
+    private static void msearch(int EID,Scene scene){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
             PreparedStatement pst = conn.prepareStatement("Select * from employee");
             ResultSet rs = pst.executeQuery();
             if(rs.next()){
                 if(EID == rs.getInt("EID")){
-                    EmpSum.display(EID);
+                    EmpSum.display(EID,scene);
                 }
                 else{
                     AlertDialog.display("Not Found","Employee Not Found !");
@@ -78,5 +79,4 @@ public class Manager {
             e.printStackTrace();
         }
     }
-
 }

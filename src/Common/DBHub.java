@@ -8,7 +8,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 
 /**
- * Created by Deadpool on 4/10/2016.
+ * Created by Ankit Sarkar on 4/10/2016.
  */
 public class DBHub {
     public static String singleselect(int EID, String req){
@@ -22,8 +22,8 @@ public class DBHub {
         }
         catch(Exception e) {
             e.printStackTrace();
-            return null;
+            return "N/A";
         }
-        return null;
+        return "N/A";
     }
 }

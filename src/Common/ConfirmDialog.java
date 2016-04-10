@@ -9,7 +9,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- * Created by Deadpool on 4/9/2016.
+ * Created by Ankit Sarkar on 4/9/2016.
  */
 public class ConfirmDialog {
     static boolean ans;

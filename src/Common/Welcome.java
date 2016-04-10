@@ -9,9 +9,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
-import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
-import javax.swing.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -40,7 +39,8 @@ public class Welcome extends Application{
             e.consume();
             CloseLogic.onclose();
         });
-        Label heading = new Label("Payroll Management System");
+        Label heading = new Label();
+        heading.setText("Payroll Management System");
         Label username = new Label("Username");
         Label password = new Label("Password");
         sign_in = new Button("Sign In");
@@ -91,9 +91,9 @@ public class Welcome extends Application{
         layout.add(apply,1,3);
         layout.add(exit,0,4);
 
-
         login = new Scene(layout,640,480);
-
+        login.getStylesheets().add("global.css");
+        heading.setId("fancytext");
         common.setTitle("Login Page");
         common.setScene(login);
         common.show();
