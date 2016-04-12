@@ -29,6 +29,13 @@ public class Welcome extends Application{
     String pass;
     static TextField usert;
     static PasswordField passt;
+    static String host = "localhost";
+    static String port = "3306";
+    static String db = "pay_admin";
+    static String dbuser = "pay_admin";
+    static String dbpass = "qwerty12345";
+    public static int gw = 720;
+    public static int gh = 480;
 
     public static void main(String[] args){
         launch(args);
@@ -58,13 +65,15 @@ public class Welcome extends Application{
             if(usert.getText().length() == 0 || passt.getText().length() == 0){
                 AlertDialog.display("Empty Field Error", "All Fields are Required");
             }
-            else {
+            else{
                 int access = validate(usert.getText(), passt.getText());
-                if (access == 1) {
+                if(access == 1){
                     Admin.Manager.display(Integer.parseInt(usert.getText()), login);
-                } else if (access == 2) {
-                    Employee.Manager.display(Integer.parseInt(usert.getText()), login);
-                } else {
+                }else if(access == 2){
+                    Employee.Manager.display(Integer.parseInt(usert.getText()));
+                }else if(access == 3){
+                    DBConnect.display();
+                }else{
                     AlertDialog.display("Wrong Credentials", "Please Check Your Credentials");
                 }
             }
@@ -90,7 +99,7 @@ public class Welcome extends Application{
         layout.add(apply,1,3);
         layout.add(exit,0,4);
 
-        login = new Scene(layout,720,480);
+        login = new Scene(layout,gw,gh);
         login.getStylesheets().add("global.css");
         heading.setId("fancytext");
         common.setTitle("Login Page");
@@ -100,7 +109,7 @@ public class Welcome extends Application{
 
     private int validate(String EID,String PASS) {
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?" + "user=" + dbuser + "&password=" + dbpass);
             PreparedStatement pst = conn.prepareStatement("Select * from Employee where EID=? and PASS=?");
             pst.setString(1, EID);
             pst.setString(2, PASS);
@@ -116,8 +125,7 @@ public class Welcome extends Application{
                 return 0;
         }
         catch(SQLException e){
-            e.printStackTrace();
-            return 0;
+            return 3;
         }
     }
     public static void back(){

@@ -24,7 +24,7 @@ public class DBEmpInsert {
     public float cd;
     public void empInsert(int EID){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement pst = conn.prepareStatement("Insert Into employee (EID,NAME,DEPT,BASIC,DA,HRA,AA,TA,BONUS,MA,SA,AP,MD,CD) Values(?,?,?,?,?,?,?,?,?,?,?,?,?,?)");
             pst.setInt(1,eid);
             pst.setString(2,name);

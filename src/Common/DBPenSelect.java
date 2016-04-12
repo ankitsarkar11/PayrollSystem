@@ -15,7 +15,7 @@ public class DBPenSelect {
 
     public ResultSet penSelectAll() {
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement pst = conn.prepareStatement("Select * from pending");
             rs = pst.executeQuery();
             return rs;

@@ -46,6 +46,9 @@ public class EmpSum {
         });
 
         exit.setOnAction(e -> CloseLogic.onclose());
+
+        logout.setOnAction(e -> CloseLogic.onclose(1));
+
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         layout.setHgap(10);
@@ -69,7 +72,7 @@ public class EmpSum {
         layout.add(logout,0,10);
         layout.add(details,1,10);
 
-        Scene scene = new Scene(layout,640,480);
+        Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
         details.setOnAction(e ->{
             EmpDetails.display(EID,scene,1);
         });

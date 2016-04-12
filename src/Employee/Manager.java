@@ -1,9 +1,6 @@
 package Employee;
 
-import Common.DBHub;
-import Common.EmpDetails;
-import Common.SendMessage;
-import Common.Welcome;
+import Common.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -14,13 +11,18 @@ import javafx.scene.layout.GridPane;
  * Created by Ankit Sarkar on 4/9/2016.
  */
 public class Manager {
-    public static void display(int EID, Scene login){
+    public static void display(int EID){
         DBHub data = new DBHub();
         data.empSelect(EID);
         Label heading = new Label("Welcome " + data.name);
         Button details  = new Button("View Details");
         Button msg = new Button("Send Message");
         Button msga = new Button("Message to Admin");
+        Button logout = new Button("Log Out");
+
+        logout.setOnAction(e -> {
+            CloseLogic.onclose(1);
+        });
 
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -31,8 +33,9 @@ public class Manager {
         layout.add(details,0,1);
         layout.add(msg,0,2);
         layout.add(msga,1,2);
+        layout.add(logout,0,3);
 
-        Scene scene = new Scene(layout,720,480);
+        Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
 
         msg.setOnAction(e ->{
             SendMessage.display(EID,1,scene);
@@ -43,7 +46,9 @@ public class Manager {
         });
 
         details.setOnAction(e -> EmpDetails.display(EID,scene,2));
-
+        logout.setOnAction(e -> {
+            CloseLogic.onclose(1);
+        });
         Welcome.common.setScene(scene);
     }
 }

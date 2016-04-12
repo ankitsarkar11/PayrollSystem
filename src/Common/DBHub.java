@@ -28,7 +28,7 @@ public class DBHub {
 
     public void empSelect(int EID){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement pst = conn.prepareStatement("Select * from employee where EID=?");
             pst.setInt(1,EID);
             ResultSet rs = pst.executeQuery();

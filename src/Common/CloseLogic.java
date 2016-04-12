@@ -9,4 +9,10 @@ public class CloseLogic {
             Welcome.common.close();
         }
     }
+    public static void onclose(int a){
+        if(ConfirmDialog.display("Confirmation","Are You Sure ?")){
+            Welcome.back();
+        }
+    }
+
 }

@@ -6,6 +6,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -30,6 +31,7 @@ public class EmpDetails {
             TextField tmd = new TextField(Float.toString(data.md));
             TextField tcd = new TextField(Float.toString(data.cd));
             TextField tdept = new TextField(data.dept);
+            Button logout = new Button("Log Out");
 
             Label heading = new Label("Employee Details");
             Label lname = new Label("Name");
@@ -62,7 +64,11 @@ public class EmpDetails {
                 Welcome.common.setScene(scene);
             });
 
-            if (data.ap == 1) {
+            logout.setOnAction(e ->{
+                CloseLogic.onclose(1);
+            });
+
+            if(data.ap == 1) {
                 admin.setSelected(true);
             }
 
@@ -122,8 +128,12 @@ public class EmpDetails {
             layout.add(admin, 0, 12);
             layout.add(back, 0, 13);
             layout.add(save, 1, 13);
-            layout.add(exit, 4, 13);
+            layout.add(logout, 4, 13);
             layout.add(print, 3, 13);
+
+            BorderPane mainLayout = new BorderPane();
+            mainLayout.setCenter(layout);
+            mainLayout.setBottom(exit);
 
             print.setOnAction(e -> {
                 print.setVisible(false);
@@ -131,10 +141,12 @@ public class EmpDetails {
                 admin.setVisible(false);
                 back.setVisible(false);
                 exit.setVisible(false);
+                logout.setVisible(false);
                 PrintJob.print(layout);
                 back.setVisible(true);
                 exit.setVisible(true);
                 print.setVisible(true);
+                logout.setVisible(true);
                 if(ap == 1){
                     save.setVisible(true);
                     admin.setVisible(true);
@@ -163,7 +175,7 @@ public class EmpDetails {
                 AlertDialog.display("Success", "Database Updated Successfully !!");
             });
 
-            Scene current = new Scene(layout, 720, 480);
+            Scene current = new Scene(mainLayout,Welcome.gw,Welcome.gh);
 
             Welcome.common.setScene(current);
         }

@@ -12,8 +12,7 @@ public class DBPenInsert {
     String name,pass,dept;
     public void penInsert(){
         try{
-            Class.forName("com.mysql.jdbc.Driver");
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement rst = conn.prepareStatement("Select * from Employee");
             PreparedStatement pst = conn.prepareStatement("Select * from Pending");
             int EID=0;

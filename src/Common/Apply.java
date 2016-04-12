@@ -74,7 +74,7 @@ public class Apply {
 
         });
 
-        Scene scene = new Scene(layout,640,480);
+        Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
         Welcome.common.setScene(scene);
     }
 }

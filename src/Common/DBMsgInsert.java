@@ -8,10 +8,10 @@ import java.sql.ResultSet;
 /**
  * Created by Deadpool on 4/12/2016.
  */
-public class MsgInsert {
+public class DBMsgInsert {
     public static void mgInsert(String msg, String sub, int eid, int rid){
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             int SR = srgen();
             if(rid == 0){
                 PreparedStatement nst = conn.prepareStatement("SELECT *  from employee WHERE AP=1");
@@ -46,7 +46,7 @@ public class MsgInsert {
     private static int srgen(){
         int SR = 0;
         try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
+            Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement pst = conn.prepareStatement("SELECT * FROM MESSAGE");
             ResultSet rst = pst.executeQuery();
             while(rst.next()){

@@ -46,7 +46,7 @@ public class Manager {
         layout.add(logout,0,4);
         layout.add(exit,1,4);
 
-        Scene scene = new Scene(layout,720,480);
+        Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
 
         msg.setOnAction(e ->{
             SendMessage.display(EID,1,scene);
