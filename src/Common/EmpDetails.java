@@ -6,7 +6,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.effect.FloatMap;
 import javafx.scene.layout.GridPane;
 
 /**
@@ -90,44 +89,56 @@ public class EmpDetails {
             layout.setHgap(10);
             layout.setVgap(10);
 
-            layout.add(heading, 0, 0);
+            layout.add(heading, 2, 0);
             layout.add(lname, 0, 1);
             layout.add(tname, 1, 1);
-            layout.add(lid, 0, 2);
-            layout.add(tid, 1, 2);
-            layout.add(ldept, 0, 3);
-            layout.add(tdept, 1, 3);
-            layout.add(gen, 0, 4);
-            layout.add(lbasic, 0, 5);
-            layout.add(tbasic, 1, 5);
-            layout.add(allheading, 0, 6);
-            layout.add(lda, 0, 7);
-            layout.add(tda, 1, 7);
-            layout.add(lhra, 0, 8);
-            layout.add(thra, 1, 8);
-            layout.add(lbonus, 0, 9);
-            layout.add(tbonus, 1, 9);
-            layout.add(lma, 0, 10);
-            layout.add(tma, 1, 10);
-            layout.add(lta, 0, 11);
-            layout.add(tta, 1, 11);
-            layout.add(lsa, 0, 12);
-            layout.add(tsa, 1, 12);
-            layout.add(laa, 0, 13);
-            layout.add(taa, 1, 13);
-            layout.add(dedheading, 0, 14);
-            layout.add(lmd, 0, 15);
-            layout.add(tmd, 1, 15);
-            layout.add(lcd, 0, 16);
-            layout.add(tcd, 1, 16);
-            layout.add(admin, 0, 17);
-            layout.add(back, 0, 18);
-            layout.add(save, 1, 18);
-            layout.add(exit, 0, 19);
-            layout.add(print, 1, 19);
+            layout.add(lid, 3, 1);
+            layout.add(tid, 4, 1);
+            layout.add(ldept, 0, 2);
+            layout.add(tdept, 1, 2);
+            layout.add(gen, 2, 3);
+            layout.add(lbasic, 0, 4);
+            layout.add(tbasic, 1, 4);
+            layout.add(allheading, 2, 5);
+            layout.add(lda, 0, 6);
+            layout.add(tda, 1, 6);
+            layout.add(lhra, 3, 6);
+            layout.add(thra, 4, 6);
+            layout.add(lbonus, 0, 7);
+            layout.add(tbonus, 1, 7);
+            layout.add(lma, 3, 7);
+            layout.add(tma, 4, 7);
+            layout.add(lta, 0, 8);
+            layout.add(tta, 1, 8);
+            layout.add(lsa, 3, 8);
+            layout.add(tsa, 4, 8);
+            layout.add(laa, 0, 9);
+            layout.add(taa, 1, 9);
+            layout.add(dedheading, 2, 10);
+            layout.add(lmd, 0, 11);
+            layout.add(tmd, 1, 11);
+            layout.add(lcd, 3, 11);
+            layout.add(tcd, 4, 11);
+            layout.add(admin, 0, 12);
+            layout.add(back, 0, 13);
+            layout.add(save, 1, 13);
+            layout.add(exit, 4, 13);
+            layout.add(print, 3, 13);
 
             print.setOnAction(e -> {
+                print.setVisible(false);
+                save.setVisible(false);
+                admin.setVisible(false);
+                back.setVisible(false);
+                exit.setVisible(false);
                 PrintJob.print(layout);
+                back.setVisible(true);
+                exit.setVisible(true);
+                print.setVisible(true);
+                if(ap == 1){
+                    save.setVisible(true);
+                    admin.setVisible(true);
+                }
             });
 
             save.setOnAction(e -> {
@@ -152,7 +163,7 @@ public class EmpDetails {
                 AlertDialog.display("Success", "Database Updated Successfully !!");
             });
 
-            Scene current = new Scene(layout, 640, 700);
+            Scene current = new Scene(layout, 720, 480);
 
             Welcome.common.setScene(current);
         }

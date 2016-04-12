@@ -8,6 +8,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -73,6 +74,7 @@ public class Welcome extends Application{
             Apply.display(login);
         });
 
+
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
         layout.setHgap(10);
@@ -88,7 +90,7 @@ public class Welcome extends Application{
         layout.add(apply,1,3);
         layout.add(exit,0,4);
 
-        login = new Scene(layout,640,480);
+        login = new Scene(layout,720,480);
         login.getStylesheets().add("global.css");
         heading.setId("fancytext");
         common.setTitle("Login Page");
