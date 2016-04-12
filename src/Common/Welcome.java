@@ -62,7 +62,7 @@ public class Welcome extends Application{
                 if (access == 1) {
                     Admin.Manager.display(Integer.parseInt(usert.getText()), login);
                 } else if (access == 2) {
-                    Scene next = Employee.Manager.display(Integer.parseInt(usert.getText()), login);
+                    Employee.Manager.display(Integer.parseInt(usert.getText()), login);
                 } else {
                     AlertDialog.display("Wrong Credentials", "Please Check Your Credentials");
                 }

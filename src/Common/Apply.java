@@ -53,6 +53,11 @@ public class Apply {
         layout.add(submit,0,4);
         layout.add(back,0,5);
         layout.add(exit,1,5);
+
+        submit.setOnAction(e -> {
+
+        });
+
         Scene scene = new Scene(layout,640,480);
 
         return scene;

@@ -1,9 +1,6 @@
 package Admin;
 
-import Common.AlertDialog;
-import Common.CloseLogic;
-import Common.ConfirmDialog;
-import Common.Welcome;
+import Common.*;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -11,10 +8,6 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.GridPane;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 
 /**
  * Created by Ankit Sarkar on 4/9/2016.
@@ -54,29 +47,18 @@ public class Manager {
                 AlertDialog.display("Empty Field", "The Field Can't be Empty");
             }
             else{
-                msearch(Integer.parseInt(tsearch.getText()),scene);
-            }
-        });
-        Welcome.common.setScene(scene);
-        Welcome.common.show();
-
-    }
-    private static void msearch(int EID,Scene scene){
-        try{
-            Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/pay_admin?" + "user=pay_admin&password=qwerty12345");
-            PreparedStatement pst = conn.prepareStatement("Select * from employee");
-            ResultSet rs = pst.executeQuery();
-            if(rs.next()){
-                if(EID == rs.getInt("EID")){
-                    EmpSum.display(EID,scene);
+                DBHub data = new DBHub();
+                data.empSelect(Integer.parseInt(tsearch.getText()));
+                if(data.eid != 0){
+                    EmpSum.display(Integer.parseInt(tsearch.getText()),scene);
                 }
                 else{
                     AlertDialog.display("Not Found","Employee Not Found !");
                 }
             }
-        }
-        catch(Exception e){
-            e.printStackTrace();
-        }
+        });
+        Welcome.common.setScene(scene);
+        Welcome.common.show();
+
     }
 }
