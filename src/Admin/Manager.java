@@ -19,9 +19,9 @@ public class Manager {
         Label lsearch = new Label("Employee ID to Search");
         Button bsearch = new Button("Search");
         Button logout = new Button("Logout");
-
-
+        Button pending = new Button("Pending Apllications");
         Button exit = new Button("Exit");
+
         exit.setOnAction(e -> {
             CloseLogic.onclose();
         });
@@ -57,6 +57,11 @@ public class Manager {
                 }
             }
         });
+
+        pending.setOnAction(e ->{
+            Pending.display(scene);
+        });
+
         Welcome.common.setScene(scene);
         Welcome.common.show();
 

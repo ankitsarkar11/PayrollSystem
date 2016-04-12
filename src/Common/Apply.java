@@ -17,7 +17,7 @@ import javafx.stage.Stage;
 public class Apply {
 
 
-    public static Scene display(Scene login){
+    public static void display(Scene login){
         Label uname = new Label("Name");
         Label upass = new Label("Password");
         Label udept = new Label("Department");
@@ -33,6 +33,8 @@ public class Apply {
         Button back = new Button("Back");
         back.setOnAction(e ->{
             Welcome.common.setTitle("Login Page");
+            Welcome.usert.setText("");
+            Welcome.passt.setText("");
             Welcome.common.setScene(login);
         });
         Button exit = new Button("Exit");
@@ -55,11 +57,24 @@ public class Apply {
         layout.add(exit,1,5);
 
         submit.setOnAction(e -> {
+            if(name.getText().length() == 0 || dept.getText().length() == 0 || pass.getText().length() == 0){
+                AlertDialog.display("ERROR","All Fields are Mandatory !!");
+            }
+            else{
+                DBPenInsert data = new DBPenInsert();
+                data.name = name.getText();
+                data.dept = dept.getText();
+                data.pass = pass.getText();
+                data.penInsert();
+                AlertDialog.display("SUCCESS","Changes Successfully Saved !!");
+                Welcome.usert.setText("");
+                Welcome.passt.setText("");
+                Welcome.common.setScene(login);
+            }
 
         });
 
         Scene scene = new Scene(layout,640,480);
-
-        return scene;
+        Welcome.common.setScene(scene);
     }
 }

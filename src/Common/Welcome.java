@@ -70,10 +70,7 @@ public class Welcome extends Application{
         });
 
         apply.setOnAction(e ->{
-            Scene sapply = Apply.display(login);
-            common.setTitle("Application Form");
-            common.setScene(sapply);
-            common.show();
+            Apply.display(login);
         });
 
         GridPane layout = new GridPane();
