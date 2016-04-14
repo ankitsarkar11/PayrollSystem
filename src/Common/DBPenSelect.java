@@ -11,9 +11,9 @@ import java.sql.ResultSet;
 public class DBPenSelect {
     public String name,dept,pass;
     public int eid;
-    ResultSet rs = null;
+    static ResultSet rs = null;
 
-    public ResultSet penSelectAll() {
+    public static ResultSet penSelectAll() {
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement pst = conn.prepareStatement("Select * from pending");

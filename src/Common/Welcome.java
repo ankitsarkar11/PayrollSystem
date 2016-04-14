@@ -25,8 +25,6 @@ public class Welcome extends Application{
     public static Stage common;
     static Scene login;
     Button sign_in, apply;
-    String eid;
-    String pass;
     static TextField usert;
     static PasswordField passt;
     static String host = "localhost";
@@ -64,6 +62,9 @@ public class Welcome extends Application{
         sign_in.setOnAction(e -> {
             if(usert.getText().length() == 0 || passt.getText().length() == 0){
                 AlertDialog.display("Empty Field Error", "All Fields are Required");
+            }
+            else if(!CheckNum.checkInt(usert.getText())){
+                AlertDialog.display("Employee ID Field Error", "Only Numbers Allowed in Employee ID Field");
             }
             else{
                 int access = validate(usert.getText(), passt.getText());
@@ -107,7 +108,7 @@ public class Welcome extends Application{
         common.show();
     }
 
-    private int validate(String EID,String PASS) {
+    private int validate(String EID,String PASS){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?" + "user=" + dbuser + "&password=" + dbpass);
             PreparedStatement pst = conn.prepareStatement("Select * from Employee where EID=? and PASS=?");

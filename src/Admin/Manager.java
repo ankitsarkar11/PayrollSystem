@@ -24,6 +24,7 @@ public class Manager {
         Button exit = new Button("Exit");
         Button msg = new Button("Send Message");
         Button msga = new Button("Message to All Admins");
+        Button pen = new Button("Pending Applications");
 
         exit.setOnAction(e -> {
             CloseLogic.onclose();
@@ -32,6 +33,8 @@ public class Manager {
         logout.setOnAction(e -> {
             Welcome.back();
         });
+
+
 
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -43,8 +46,9 @@ public class Manager {
         layout.add(bsearch,0,2);
         layout.add(msg,0,3);
         layout.add(msga,1,3);
-        layout.add(logout,0,4);
-        layout.add(exit,1,4);
+        layout.add(pen,0,4);
+        layout.add(logout,0,5);
+        layout.add(exit,1,5);
 
         Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
 
@@ -60,6 +64,9 @@ public class Manager {
             if(tsearch.getText().length() == 0){
                 AlertDialog.display("Empty Field", "The Field Can't be Empty");
             }
+            else if(!CheckNum.checkInt(tsearch.getText())){
+                AlertDialog.display("Employee ID Field Error", "Only Numbers Allowed in Employee ID Field");
+            }
             else{
                 DBHub data = new DBHub();
                 data.empSelect(Integer.parseInt(tsearch.getText()));
@@ -70,6 +77,10 @@ public class Manager {
                     AlertDialog.display("Not Found","Employee Not Found !");
                 }
             }
+        });
+
+        pen.setOnAction(e -> {
+            Pending.display(scene);
         });
 
         pending.setOnAction(e ->{

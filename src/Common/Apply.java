@@ -65,8 +65,8 @@ public class Apply {
                 data.name = name.getText();
                 data.dept = dept.getText();
                 data.pass = pass.getText();
-                data.penInsert();
-                AlertDialog.display("SUCCESS","Changes Successfully Saved !!");
+                int REID = data.penInsert();
+                AlertDialog.display("SUCCESS","Employee ID Assigned: " + REID);
                 Welcome.usert.setText("");
                 Welcome.passt.setText("");
                 Welcome.common.setScene(login);

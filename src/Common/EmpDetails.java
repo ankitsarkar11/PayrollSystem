@@ -8,6 +8,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.VBox;
 
 /**
  * Created by Ankit Sarkar on 4/10/2016.
@@ -125,15 +126,29 @@ public class EmpDetails {
             layout.add(tmd, 1, 11);
             layout.add(lcd, 3, 11);
             layout.add(tcd, 4, 11);
-            layout.add(admin, 0, 12);
-            layout.add(back, 0, 13);
-            layout.add(save, 1, 13);
-            layout.add(logout, 4, 13);
-            layout.add(print, 3, 13);
 
-            BorderPane mainLayout = new BorderPane();
-            mainLayout.setCenter(layout);
-            mainLayout.setBottom(exit);
+            GridPane buttonGrid = new GridPane();
+            buttonGrid.setAlignment(Pos.CENTER);
+            buttonGrid.setVgap(10);
+            buttonGrid.setHgap(100);
+
+            if(ap == 1) {
+                buttonGrid.add(back, 0, 0);
+                buttonGrid.add(logout, 1, 0);
+                buttonGrid.add(save, 2, 0);
+                buttonGrid.add(print, 3, 0);
+                buttonGrid.add(exit, 4, 0);
+            }
+            else{
+                buttonGrid.add(back, 0, 0);
+                buttonGrid.add(logout, 1, 0);
+                buttonGrid.add(print, 2, 0);
+                buttonGrid.add(exit, 3, 0);
+            }
+
+            VBox vlayout = new VBox(10);
+            vlayout.setAlignment(Pos.CENTER);
+            vlayout.getChildren().addAll(layout,admin,buttonGrid);
 
             print.setOnAction(e -> {
                 print.setVisible(false);
@@ -175,7 +190,7 @@ public class EmpDetails {
                 AlertDialog.display("Success", "Database Updated Successfully !!");
             });
 
-            Scene current = new Scene(mainLayout,Welcome.gw,Welcome.gh);
+            Scene current = new Scene(vlayout,Welcome.gw,Welcome.gh);
 
             Welcome.common.setScene(current);
         }

@@ -10,7 +10,7 @@ import java.sql.ResultSet;
  */
 public class DBPenInsert {
     String name,pass,dept;
-    public void penInsert(){
+    public int penInsert(){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
             PreparedStatement rst = conn.prepareStatement("Select * from Employee");
@@ -46,9 +46,11 @@ public class DBPenInsert {
             mst.setString(3, pass);
             mst.setString(4, dept);
             mst.executeUpdate();
+            return REID;
         }
         catch(Exception e){
             e.printStackTrace();
+            return 0;
         }
     }
 }

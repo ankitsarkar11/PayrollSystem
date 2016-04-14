@@ -1,5 +1,6 @@
 package Common;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -90,6 +91,7 @@ public class SendMessage {
         buttons.add(exit,3,0);
 
         BorderPane blayout = new BorderPane();
+        blayout.setPadding(new Insets(10,10,10,10));
         blayout.setTop(layout);
         blayout.setCenter(msg);
         blayout.setBottom(buttons);

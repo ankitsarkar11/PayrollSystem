@@ -22,7 +22,7 @@ public class AlertDialog {
         VBox layout = new VBox(10);
         layout.getChildren().addAll(label,close);
         layout.setAlignment(Pos.CENTER);
-        Scene scene = new Scene(layout, 220,90);
+        Scene scene = new Scene(layout, 400,100);
         face.setScene(scene);
         face.showAndWait();
     }

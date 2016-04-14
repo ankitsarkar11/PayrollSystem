@@ -4,6 +4,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -31,11 +32,18 @@ public class ConfirmDialog {
             face.close();
         });
 
+        GridPane slayout = new GridPane();
+        slayout.setAlignment(Pos.CENTER);
+        slayout.setVgap(10);
+        slayout.setHgap(10);
+        slayout.add(yes,0,0);
+        slayout.add(no,1,0);
+
         VBox layout = new VBox(10);
         layout.setAlignment(Pos.CENTER);
-        layout.getChildren().addAll(label,yes,no);
+        layout.getChildren().addAll(label,slayout);
 
-        Scene scene = new Scene(layout,200,100);
+        Scene scene = new Scene(layout,400,100);
 
         face.setScene(scene);
         face.showAndWait();
