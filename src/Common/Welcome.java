@@ -69,7 +69,7 @@ public class Welcome extends Application{
             else{
                 int access = validate(usert.getText(), passt.getText());
                 if(access == 1){
-                    Admin.Manager.display(Integer.parseInt(usert.getText()), login);
+                    Admin.Manager.display(Integer.parseInt(usert.getText()));
                 }else if(access == 2){
                     Employee.Manager.display(Integer.parseInt(usert.getText()));
                 }else if(access == 3){

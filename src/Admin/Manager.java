@@ -15,7 +15,7 @@ import javafx.scene.layout.GridPane;
  */
 public class Manager {
     static TextField tsearch = new TextField();
-    public static void display(int EID, Scene login){
+    public static void display(int EID){
         Label heading = new Label("Administrator Panel");
         Label lsearch = new Label("Employee ID to Search");
         Button bsearch = new Button("Search");
@@ -25,6 +25,7 @@ public class Manager {
         Button msg = new Button("Send Message");
         Button msga = new Button("Message to All Admins");
         Button pen = new Button("Pending Applications");
+        Button chkmsg = new Button("Check Messages");
 
         exit.setOnAction(e -> {
             CloseLogic.onclose();
@@ -33,8 +34,6 @@ public class Manager {
         logout.setOnAction(e -> {
             Welcome.back();
         });
-
-
 
         GridPane layout = new GridPane();
         layout.setAlignment(Pos.CENTER);
@@ -49,8 +48,13 @@ public class Manager {
         layout.add(pen,0,4);
         layout.add(logout,0,5);
         layout.add(exit,1,5);
+        layout.add(chkmsg,2,5);
 
         Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
+
+        chkmsg.setOnAction(e -> {
+            MessageList.display(EID,scene);
+        });
 
         msg.setOnAction(e ->{
             SendMessage.display(EID,1,scene);

@@ -19,6 +19,7 @@ public class Manager {
         Button msg = new Button("Send Message");
         Button msga = new Button("Message to Admin");
         Button logout = new Button("Log Out");
+        Button chkmsg = new Button("Check Messages");
 
         logout.setOnAction(e -> {
             CloseLogic.onclose(1);
@@ -33,9 +34,14 @@ public class Manager {
         layout.add(details,0,1);
         layout.add(msg,0,2);
         layout.add(msga,1,2);
+        layout.add(chkmsg,2,2);
         layout.add(logout,0,3);
 
         Scene scene = new Scene(layout,Welcome.gw,Welcome.gh);
+
+        chkmsg.setOnAction(e -> {
+            MessageList.display(EID,scene);
+        });
 
         msg.setOnAction(e ->{
             SendMessage.display(EID,1,scene);
