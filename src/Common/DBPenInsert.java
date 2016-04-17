@@ -13,8 +13,8 @@ public class DBPenInsert {
     public int penInsert(){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
-            PreparedStatement rst = conn.prepareStatement("Select * from Employee");
-            PreparedStatement pst = conn.prepareStatement("Select * from Pending");
+            PreparedStatement rst = conn.prepareStatement("Select * from employee");
+            PreparedStatement pst = conn.prepareStatement("Select * from pending");
             int EID=0;
             int REID=0;
             int flagr = 0;

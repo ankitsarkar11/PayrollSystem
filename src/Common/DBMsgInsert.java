@@ -47,7 +47,7 @@ public class DBMsgInsert {
         int SR = 0;
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
-            PreparedStatement pst = conn.prepareStatement("SELECT * FROM MESSAGE");
+            PreparedStatement pst = conn.prepareStatement("SELECT * FROM message");
             ResultSet rst = pst.executeQuery();
             while(rst.next()){
                 SR++;

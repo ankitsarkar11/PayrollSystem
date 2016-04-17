@@ -14,7 +14,7 @@ public class DBMsgSelect {
     DBMsgSelect(int sr){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
-            PreparedStatement pst = conn.prepareStatement("Select * from Message where SR=?");
+            PreparedStatement pst = conn.prepareStatement("Select * from message where SR=?");
             pst.setInt(1,sr);
             ResultSet rs = pst.executeQuery();
             if(rs.next()){

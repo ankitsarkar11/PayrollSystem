@@ -26,7 +26,7 @@ public class DBEmpUpdate {
     public void empUpdate(int EID){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + Welcome.host + ":" + Welcome.port + "/" + Welcome.db + "?" + "user=" + Welcome.dbuser + "&password=" + Welcome.dbpass);
-            PreparedStatement pst = conn.prepareStatement("Update  employee Set EID=?,NAME=?,DEPT=?,BASIC=?,DA=?,HRA=?,AA=?,TA=?,BONUS=?,MA=?,SA=?,AP=?,MD=?,CD=? Where EID=?");
+            PreparedStatement pst = conn.prepareStatement("Update employee Set EID=?,NAME=?,DEPT=?,BASIC=?,DA=?,HRA=?,AA=?,TA=?,BONUS=?,MA=?,SA=?,AP=?,MD=?,CD=? Where EID=?");
             pst.setInt(1,eid);
             pst.setString(2,name);
             pst.setString(3,dept);

@@ -8,7 +8,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -27,11 +26,11 @@ public class Welcome extends Application{
     Button sign_in, apply;
     static TextField usert;
     static PasswordField passt;
-    static String host = "localhost";
+    static String host = "******";
     static String port = "3306";
-    static String db = "pay_admin";
-    static String dbuser = "pay_admin";
-    static String dbpass = "qwerty12345";
+    static String db = "*******";
+    static String dbuser = "*******";
+    static String dbpass = "**********";
     public static int gw = 720;
     public static int gh = 480;
 
@@ -111,7 +110,7 @@ public class Welcome extends Application{
     private int validate(String EID,String PASS){
         try{
             Connection conn = DriverManager.getConnection("jdbc:mysql://" + host + ":" + port + "/" + db + "?" + "user=" + dbuser + "&password=" + dbpass);
-            PreparedStatement pst = conn.prepareStatement("Select * from Employee where EID=? and PASS=?");
+            PreparedStatement pst = conn.prepareStatement("Select * from employee where EID=? and PASS=?");
             pst.setString(1, EID);
             pst.setString(2, PASS);
             ResultSet rs = pst.executeQuery();
@@ -126,6 +125,7 @@ public class Welcome extends Application{
                 return 0;
         }
         catch(SQLException e){
+            e.printStackTrace();
             return 3;
         }
     }
